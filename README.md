@@ -4,7 +4,7 @@ This project is a message board where all visitors can see the messages but only
 
 There is also an admin role that has the ability to delete posts on the message board.
 
-### Other Technolgies Used:
+### Other Technologies Used:
 
 - Express and Node.js
 - MongoDB
