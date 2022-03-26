@@ -11,9 +11,9 @@
       <p class="post-body"><%= post.body %></p>
       <% if (user) { %> <% if (user.status === 'member' || user.isAdmin) { %>
       <span class="author">Author: <%= post.author.username %> </span>
-      <span class="date">Date Posted: <%= post.date %> </span>
+      <span class="date">Date Posted: <%= date.format(post.date, 'yyyy-MM-dd h:mm a') %> </span>
       <% } %> <% if (user.isAdmin) { %>
-      <button class="delete-post"><a href="/delete/<%= post._id %> ">Delete Post</a></button>
+      <button class="delete-post"><a href="/delete/<%= post._id %>">Delete Post</a></button>
       <% } %> <% } %>
     </section>
     <% }) %> <% } %>

@@ -1,0 +1,12 @@
+<section class="container">
+  <h2>Join the Club</h2>
+  <h3>Enter the Super Secret Password to Become a Member!</h3>
+  <% if (locals.error) { %>
+  <p class="error"><%= locals.error %></p>
+  <% } %>
+  <form action="/member" method="post" class="membership">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" />
+    <button>Submit</button>
+  </form>
+</section>

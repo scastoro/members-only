@@ -10,16 +10,16 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
+        <ul class="nav">
+          <li class="nav-link"><a href="/">Home</a></li>
           <% if (locals.user){ %>
-          <li><a href="/logout">Logout</a></li>
-          <li><a href="/new-post">New Post</a></li>
+          <li class="nav-link"><a href="/logout">Logout</a></li>
+          <li class="nav-link"><a href="/new-post">New Post</a></li>
           <% if (locals.user.status === 'non-member') { %>
-          <li><a href="/member">Become a Member</a></li>
+          <li class="nav-link"><a href="/member">Become a Member</a></li>
           <% } %> <% } else { %>
-          <li><a href="/login">Log In</a></li>
-          <li><a href="/signup">Sign Up</a></li>
+          <li class="nav-link"><a href="/login">Log In</a></li>
+          <li class="nav-link"><a href="/signup">Sign Up</a></li>
           <% } %>
         </ul>
       </nav>

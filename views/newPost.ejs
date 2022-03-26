@@ -1,4 +1,4 @@
-<%if (locals.user) { %>
+<%if (user) { %>
 <section class="container">
   <% if(locals.content){ %> <% if(errors) { %> <% errors.forEach(error=> { %>
   <li><%= error %></li>
@@ -8,7 +8,7 @@
     <input type="text" id="title" name="title" value="<%= content.title %>" />
     <label for="body">Post body:</label>
     <textarea name="body" id="body" cols="30" rows="10" value="<%= content.body %>"> </textarea>
-    <button type="submit"></button>
+    <button type="submit">Submit Post</button>
   </form>
   <% } else { %>
   <form action="/new-post" method="post">
@@ -16,13 +16,15 @@
     <input type="text" id="title" name="title" />
     <label for="body">Post body:</label>
     <textarea name="body" id="body" cols="30" rows="10"> </textarea>
-    <button type="submit"></button>
+    <button type="submit">Submit Post</button>
   </form>
 
   <% } %>
 </section>
 
 <% } else { %>
-<h2>Only members may make posts</h2>
-<p>Please <a href="/login">Log In</a></p>
+<section class="container">
+  <h2>Only members may make posts</h2>
+  <p>Please <a href="/login">Log In</a></p>
+</section>
 <% } %>
