@@ -17,6 +17,7 @@ passport.use(
       bcrypt.compare(password, user.password, (err, res) => {
         if (err) return done(err);
         if (res) {
+          console.log('Logged In!');
           return done(null, user);
         } else {
           return done(null, false, { message: 'Incorrect password' });
@@ -51,7 +52,7 @@ router.post(
   })
 );
 
-router.post('/logout', function (req, res, next) {
+router.get('/logout', function (req, res, next) {
   req.logout();
   res.redirect('/');
 });

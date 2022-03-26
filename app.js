@@ -13,7 +13,7 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const expressLayouts = require('express-ejs-layouts');
 // const memberRouter = require('./routes/member');
-// const newPostRouter = require('./routes/newPost');
+const newPostRouter = require('./routes/newPost');
 
 const app = express();
 
@@ -33,7 +33,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -41,7 +48,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter);
 app.use('/', authRouter);
 // app.use('/member', memberRouter);
-// app.use('/new-post', newPostRouter);
+app.use('/new-post', newPostRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
