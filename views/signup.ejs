@@ -1,0 +1,23 @@
+<section class="container">
+  <% if (locals.errors) { %>
+  <ul>
+    <% errors.forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% })} %>
+  </ul>
+  <h1 class="signup-heading">Sign Up</h1>
+  <form action="/signup" method="post">
+    <label for="username">Enter your User Name:</label>
+    <input type="text" name="username" id="username" />
+    <label for="password">Enter your Password</label>
+    <input type="password" name="password" id="password" />
+    <label for="confirmPassword">Re-enter your password</label>
+    <input type="password" name="confirmPassword" id="confirmPassword" />
+    <span>User is Admin?</span>
+    <label for="yes-admin">Yes</label>
+    <input type="radio" name="admin" id="yes-admin" value="true" />
+    <label for="no-admin">No</label>
+    <input type="radio" name="admin" id="no-admin" value="false" />
+    <button type="submit">Sign Up</button>
+  </form>
+</section>

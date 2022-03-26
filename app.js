@@ -10,7 +10,8 @@ const session = require('express-session');
 const passport = require('passport');
 
 const indexRouter = require('./routes/index');
-// const authRouter = require('./routes/auth')
+const authRouter = require('./routes/auth');
+const expressLayouts = require('express-ejs-layouts');
 // const memberRouter = require('./routes/member');
 // const newPostRouter = require('./routes/newPost');
 
@@ -24,6 +25,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -37,7 +39,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
-// app.use('/', authRouter);
+app.use('/', authRouter);
 // app.use('/member', memberRouter);
 // app.use('/new-post', newPostRouter);
 
@@ -52,6 +54,7 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  console.dir(err);
   // render the error page
   res.status(err.status || 500);
   res.render('error');

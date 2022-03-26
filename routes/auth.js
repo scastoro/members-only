@@ -40,7 +40,7 @@ passport.deserializeUser(function (id, done) {
 const router = express.Router();
 
 router.get('/login', function (req, res, next) {
-  res.render('login');
+  res.render('login', { title: 'Log In' });
 });
 
 router.post(
@@ -57,7 +57,7 @@ router.post('/logout', function (req, res, next) {
 });
 
 router.get('/signup', function (req, res, next) {
-  res.render('signup');
+  res.render('signup', { title: 'Sign Up' });
 });
 
 router.post(
@@ -73,10 +73,14 @@ router.post(
     // Put new user handler function here
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render('signup', { name: req.body.name, errors: errors.array() });
+      console.log(errors.array());
+      res.render('signup', { name: req.body.name, errors: errors.array(), title: 'Sign Up' });
+      return;
     }
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 100).catch((err) => next(err));
+    const hashedPassword = await bcrypt.hash(req.body.password, 10).catch(next);
+
+    console.log(hashedPassword);
 
     const user = new User({
       username: req.body.username,
@@ -84,11 +88,13 @@ router.post(
       status: 'non-member',
       isAdmin: req.body.admin,
     });
+    const response = await user.save().catch(next);
 
-    const response = await user.save().catch((err) => next(err));
-
-    console.log(response);
-
-    res.redirect('/');
+    if (response) {
+      console.log(response);
+      res.redirect('/');
+    }
   }
 );
+
+module.exports = router;
