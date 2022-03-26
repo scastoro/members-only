@@ -15,7 +15,9 @@
           <% if (locals.user){ %>
           <li><a href="/logout">Logout</a></li>
           <li><a href="/new-post">New Post</a></li>
-          <% } else { %>
+          <% if (locals.user.status === 'non-member') { %>
+          <li><a href="/member">Become a Member</a></li>
+          <% } %> <% } else { %>
           <li><a href="/login">Log In</a></li>
           <li><a href="/signup">Sign Up</a></li>
           <% } %>

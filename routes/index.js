@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const indexController = require('../controllers/indexController');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  console.log(req.user);
-  res.render('index', { title: 'Members Only', user: req.user });
-});
+router.get('/', indexController.get);
+
+router.get('/delete/:userId', indexController.delete_entry);
 
 module.exports = router;

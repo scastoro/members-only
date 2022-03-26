@@ -1,5 +1,21 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<% if (user){ %>
-<h1>Welcome back <%= user.username %></h1>
-<% } %>
+<section class="container">
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <% if (user){ %>
+  <h1>Welcome back <%= user.username %></h1>
+  <% } %>
+  <section class="posts-container">
+    <% if (posts) { %> <% posts.forEach(post => { %>
+    <section class="post">
+      <h3 class="post-heading"><%= post.title %></h3>
+      <p class="post-body"><%= post.body %></p>
+      <% if (user) { %> <% if (user.status === 'member' || user.isAdmin) { %>
+      <span class="author">Author: <%= post.author.username %> </span>
+      <span class="date">Date Posted: <%= post.date %> </span>
+      <% } %> <% if (user.isAdmin) { %>
+      <button class="delete-post"><a href="/delete/<%= post._id %> ">Delete Post</a></button>
+      <% } %> <% } %>
+    </section>
+    <% }) %> <% } %>
+  </section>
+</section>

@@ -8,11 +8,12 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const expressLayouts = require('express-ejs-layouts');
-// const memberRouter = require('./routes/member');
+const memberRouter = require('./routes/member');
 const newPostRouter = require('./routes/newPost');
 
 const app = express();
@@ -38,6 +39,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: mongoDB }),
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
@@ -47,7 +49,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
-// app.use('/member', memberRouter);
+app.use('/member', memberRouter);
 app.use('/new-post', newPostRouter);
 
 // catch 404 and forward to error handler
