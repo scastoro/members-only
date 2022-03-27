@@ -4,6 +4,7 @@
   <li><%= error %></li>
   <% }) %> <% }%>
   <form action="/new-post" method="post">
+    <h1>Make a new Post</h1>
     <label for="title">Post title:</label>
     <input type="text" id="title" name="title" value="<%= content.title %>" />
     <label for="body">Post body:</label>
@@ -12,11 +13,12 @@
   </form>
   <% } else { %>
   <form action="/new-post" method="post">
+    <h1>Make a new Post</h1>
     <label for="title">Post title:</label>
     <input type="text" id="title" name="title" />
     <label for="body">Post body:</label>
     <textarea name="body" id="body" cols="30" rows="10"> </textarea>
-    <button type="submit">Submit Post</button>
+    <button type="submit" class="btn">Submit Post</button>
   </form>
 
   <% } %>

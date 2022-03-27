@@ -1,16 +1,82 @@
+:root {
+  --primary-color: #eee;
+  --secondary-color: rgb(57, 105, 235);
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+html {
+  /* font-size: 62.5%; */
+}
 body {
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font: 18px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  background-color: var(--primary-color);
+  color: #171717;
+}
+
+button {
+  background-color: var(--secondary-color);
+  border: none;
+  color: #eeeeee;
+}
+
+.btn {
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.btn:hover {
+  opacity: 0.75;
+  cursor: pointer;
 }
 
 a {
-  color: #00b7ff;
+  color: #eeeeee;
+  text-decoration: none;
+  padding: 5px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2rem;
 }
 
+form input,
+form textarea,
+form h1 {
+  margin-bottom: 0.5rem;
+}
+
+label {
+  font-size: 16px;
+}
+
+form label {
+  margin-bottom: 0.3rem;
+}
+
+fieldset {
+  border: none;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+fieldset input {
+  margin-bottom: 0;
+}
+
+fieldset label {
+  margin-bottom: 0;
+}
+
+/* Heading styling */
+header {
+  background-color: var(--secondary-color);
+}
 .nav {
   display: flex;
   list-style: none;
@@ -20,12 +86,73 @@ a {
   margin: 1rem 1rem;
 }
 
+.nav-link a:hover {
+  opacity: 0.75;
+}
+
+.nav-link a:first-child {
+  padding-left: 0;
+}
+
 .nav-link:first-child {
   margin-left: 0;
 }
 
+/* Home posts container styling */
+.main-heading {
+  margin-top: 1rem;
+}
+
 .container,
-header {
+.nav {
   width: 85%;
   margin: 0 auto;
+}
+
+.welcome {
+  margin-top: 0.5rem;
+}
+
+.posts-container {
+  margin: 1rem 0;
+}
+
+.post {
+  position: relative;
+  margin: 1rem 0;
+  width: 375px;
+}
+
+.post-heading {
+  margin-bottom: 0.5rem;
+}
+
+.post-body {
+  margin-bottom: 0.5rem;
+}
+
+.delete-post {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+.delete-post:hover {
+  opacity: 0.75;
+}
+
+.delete-post a {
+  padding: 5px;
+  display: inline-block;
+}
+
+/* Form styling */
+#yes-admin {
+  margin-right: 0.5rem;
+}
+
+input[type='radio'] {
+  margin-left: 0.3rem;
 }
