@@ -19,7 +19,9 @@ const newPostRouter = require('./routes/newPost');
 const app = express();
 
 const mongoDB = process.env.MONGO_URL;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const clientP = mongoose
+  .connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((m) => m.connection.getClient());
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -39,7 +41,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: mongoDB }),
+    store: MongoStore.create({ clientPromise: clientP }),
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
